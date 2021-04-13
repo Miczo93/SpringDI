@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="first" class="com.example.springexample.Student">
+        <property name="name" value="Test Testson"/>
+    </bean>
+
+    <bean id="depinj1a" class="com.example.springexample.Employee">
+        <constructor-arg value="10" type="int"/>
+    </bean>
+    <bean id="depinj1b" class="com.example.springexample.Employee">
+        <constructor-arg value="10"/>
+    </bean>
+    <bean id="depinj1c" class="com.example.springexample.Employee">
+        <constructor-arg value="Test"/>
+    </bean>
+    <bean id="depinj1d" class="com.example.springexample.Employee">
+        <constructor-arg value="10" type="int"/>
+        <constructor-arg value="Test"/>
+    </bean>
+
+    <bean id="address1" class="com.example.springexample.Address">
+        <constructor-arg value="Warsaw"/>
+        <constructor-arg value="PL"/>
+        <constructor-arg value="Poland"/>
+    </bean>
+    <bean id="employee1" class="com.example.springexample.Employee">
+        <constructor-arg value="10" type="int"/>
+        <constructor-arg value="Test"/>
+        <constructor-arg ref="address1"/>
+    </bean>
+
+    <bean id="collection1" class="com.example.springexample.Question">
+        <constructor-arg value="111"/>
+        <constructor-arg value="What is java?"/>
+        <constructor-arg>
+            <list>
+                <value>Java is a programming language</value>
+                <value>Java is a Platform</value>
+                <value>Java is an Island of Indonasia</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="ans1" class="com.example.springexample.Answer">
+        <constructor-arg value="1"/>
+        <constructor-arg value="Java is a programming language"/>
+        <constructor-arg value="John"/>
+    </bean>
+    <bean id="ans2" class="com.example.springexample.Answer">
+        <constructor-arg value="2"/>
+        <constructor-arg value="Java is a Platform"/>
+        <constructor-arg value="Steve"/>
+    </bean>
+    <bean id="collection2" class="com.example.springexample.QuestionCollection">
+        <constructor-arg value="111"/>
+        <constructor-arg value="What is java?"/>
+        <constructor-arg>
+            <list>
+                <ref bean="ans1"/>
+                <ref bean="ans2"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="collection3" class="com.example.springexample.QuestionMap">
+        <constructor-arg value="11"/>
+        <constructor-arg value="What is Java?"/>
+        <constructor-arg>
+            <map>
+                <entry key="Java is a Programming Language" value="Steve"/>
+                <entry key="Java is a Platform" value="John"/>
+                <entry key="Java is an Island" value="Gary"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="collection4" class="com.example.springexample.QuestionCollectionList">
+        <constructor-arg value="111"/>
+        <constructor-arg value="What is java?"/>
+        <constructor-arg>
+            <list>
+                <ref bean="ans1"/>
+                <ref bean="ans2"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="collection5" class="com.example.springexample.QuestionMap">
+        <constructor-arg value="11"/>
+        <constructor-arg value="What is Java?"/>
+        <constructor-arg>
+            <map>
+                <entry key="Java is a Programming Language" value="Steve Abler"/>
+                <entry key="Java is a Platform" value="John Smith"/>
+                <entry key="Java is an Island" value="Gary Kuruma"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="answer1" class="com.example.springexample.Answer">
+        <constructor-arg value="1"/>
+        <constructor-arg value="Java is a Programming Language"/>
+        <constructor-arg value="12/12/2001"/>
+    </bean>
+    <bean id="answer2" class="com.example.springexample.Answer">
+        <constructor-arg value="2"/>
+        <constructor-arg value="Java is a Platform"/>
+        <constructor-arg value="12/12/2003"/>
+    </bean>
+
+    <bean id="user1" class="com.example.springexample.User">
+        <constructor-arg value="1"/>
+        <constructor-arg value="Gary Kuruma"/>
+        <constructor-arg value="Gary@gmail.com"/>
+    </bean>
+    <bean id="user2" class="com.example.springexample.User">
+        <constructor-arg value="2"/>
+        <constructor-arg value="John Smith"/>
+        <constructor-arg value="John@gmail.com"/>
+    </bean>
+
+    <bean id="collection6" class="com.example.springexample.QuestionConstructorInjectiorMap">
+        <constructor-arg value="1"/>
+        <constructor-arg value="What is Java?"/>
+        <constructor-arg>
+            <map>
+                <entry key-ref="answer1" value-ref="user1"/>
+                <entry key-ref="answer2" value-ref="user2"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="employee2" class="com.example.springexample.Employee">
+        <constructor-arg value="101"/>
+        <constructor-arg value="Steve"/>
+    </bean>
+
+    <bean id="beanParent" class="com.example.springexample.Employee" parent="employee2">
+        <constructor-arg ref="address1"/>
+    </bean>
+
+    <bean id="bySetter" class="com.example.springexample.Employee">
+        <property name="id" value="20"/>
+        <property name="name" value="Steve"/>
+        <property name="city" value="Warsaw"/>
+    </bean>
+
+    <bean id="bySetterInjection" class="com.example.springexample.Employee">
+        <property name="id" value="1"/>
+        <property name="name" value="John Gundum"/>
+        <property name="address" ref="address1"/>
+    </bean>
+
+    <bean id="bySetterInjectionCollection" class="com.example.springexample.Question">
+        <property name="id" value="1"/>
+        <property name="name" value="What is Java?"/>
+        <property name="answers">
+            <list>
+                <value>Java is a programming language</value>
+                <value>Java is a platform</value>
+                <value>Java is an Island</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="answer3" class="com.example.springexample.Answer">
+        <property name="id" value="1"/>
+        <property name="name" value="Java is a programming language"/>
+        <property name="by" value="John Gundum"/>
+    </bean>
+    <bean id="answer4" class="com.example.springexample.Answer">
+        <property name="id" value="2"/>
+        <property name="name" value="Java is a platform"/>
+        <property name="by" value="Gary Kuruma"/>
+    </bean>
+
+    <bean id="bySetterInjectionNonString" class="com.example.springexample.QuestionCollection">
+        <property name="id" value="1"/>
+        <property name="name" value="What is Java?"/>
+        <property name="answers">
+            <list>
+                <ref bean="answer3"/>
+                <ref bean="answer4"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="answer5" class="com.example.springexample.Answer">
+        <property name="id" value="1"/>
+        <property name="answer" value="Java is a Programming Language"/>
+        <property name="postedDate" value="12/12/2001"/>
+    </bean>
+    <bean id="answer6" class="com.example.springexample.Answer">
+        <property name="id" value="2"/>
+        <property name="answer" value="Java is a Platform"/>
+        <property name="postedDate" value="12/12/2003"/>
+    </bean>
+
+    <bean id="user3" class="com.example.springexample.User">
+        <property name="id" value="1"/>
+        <property name="name" value="John Gundum"/>
+        <property name="email" value="John@gmail.com"/>
+    </bean>
+    <bean id="user4" class="com.example.springexample.User">
+        <property name="id" value="2"/>
+        <property name="name" value="Gary Kuruma"/>
+        <property name="email" value="Gary@gmail.com"/>
+    </bean>
+
+    <bean id="bySetterInjectionMapNonString" class="com.example.springexample.QuestionConstructorInjectiorMap">
+        <property name="id" value="1"/>
+        <property name="name" value="What is Java?"/>
+        <property name="answers">
+            <map>
+                <entry key-ref="answer5" value-ref="user3"/>
+                <entry key-ref="answer6" value-ref="user4"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="b" class="com.example.springexample.B"/>
+    <bean id="byName" class="com.example.springexample.A" autowire="byName"/> <!-- The same name-->
+    <bean id="byType" class="com.example.springexample.A" autowire="byType"/> <!-- Only 1 type-->
+    <bean id="byConstructor" class="com.example.springexample.A"
+          autowire="constructor"/> <!-- Choose the biggest constructor-->
+    <bean id="noAutowire" class="com.example.springexample.A" autowire="no"/>
+
+    <bean id="factory1" class="com.example.springexample.A" factory-method="getA"/>
+    <bean id="factory2" class="com.example.springexample.PrintableFactory" factory-method="getPrintable"/>
+    <bean id="pfactory" class="com.example.springexample.PrintableFactory"/>
+    <bean id="factory3" class="com.example.springexample.PrintableFactory" factory-method="getPrintable2"
+          factory-bean="pfactory"/>
+
+
+</beans>
+
